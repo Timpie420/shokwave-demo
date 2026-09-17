@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shokwave — Instellingen</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050505;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  .screen { background:#0b0c0c; border-radius:6px; padding:16px; width:360px; border:1px solid #2a241a; }
+
+  .header { display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+  .header-title { color:#e8e8e6; font-size:15px; letter-spacing:2px; font-weight:500; }
+
+  .section-label { color:#5a6a6a; font-size:10px; letter-spacing:2px; margin-bottom:8px; }
+  .group { background:#0f0f0f; border:1px solid #2a2a2a; margin-bottom:16px; }
+  .row { display:flex; justify-content:space-between; align-items:center; padding:12px 14px; border-bottom:1px solid #1e1e1e; }
+  .row:last-child { border-bottom:none; }
+  .row-label { color:#e8e8e6; font-size:12.5px; }
+  .row-value { color:#5a6a6a; font-size:11.5px; }
+  .row-value.cyan { color:#00e5d1; }
+  .row-value.gold { color:#ffb020; }
+
+  .toggle { width:34px; height:19px; border-radius:10px; position:relative; }
+  .toggle.on { background:#00e5d1; }
+  .toggle.off { background:#2a2a2a; }
+  .toggle-knob { width:15px; height:15px; border-radius:50%; position:absolute; top:2px; }
+  .toggle.on .toggle-knob { background:#0b0c0c; right:2px; }
+  .toggle.off .toggle-knob { background:#6b7a7c; left:2px; }
+
+  .slider-row { padding:12px 14px; border-bottom:1px solid #1e1e1e; }
+  .slider-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:9px; }
+  .slider-track { height:4px; background:#1e1e1e; position:relative; }
+  .slider-fill { position:absolute; left:0; top:0; height:100%; width:55%; background:#00e5d1; }
+  .slider-knob { position:absolute; left:55%; top:50%; transform:translate(-50%,-50%); width:11px; height:11px; background:#00e5d1; border-radius:50%; box-shadow:0 0 6px rgba(0,229,209,0.6); }
+
+  .footer { text-align:center; color:#3a3a3a; font-size:9px; letter-spacing:1px; margin-top:20px; }
+</style>
+</head>
+<body>
+
+<div class="screen">
+
+  <div class="header">
+    <svg width="26" height="26" viewBox="0 0 100 100">
+      <polygon points="50,4 90,27 90,73 50,96 10,73 10,27" fill="none" stroke="#00e5d1" stroke-width="4"/>
+      <circle cx="50" cy="50" r="6" fill="#00e5d1"/>
+    </svg>
+    <span class="header-title">INSTELLINGEN</span>
+  </div>
+
+  <div class="section-label">BOARD</div>
+  <div class="group">
+    <div class="row"><span class="row-label">Actief board</span><span class="row-value cyan">beast ›</span></div>
+    <div class="row"><span class="row-label">Boards beheren</span><span class="row-value">›</span></div>
+    <div class="row"><span class="row-label">Wieldiameter (kalibratie)</span><span class="row-value">200 mm ›</span></div>
+  </div>
+
+  <div class="section-label">SENSORMODULE (STICK)</div>
+  <div class="group">
+    <div class="row"><span class="row-label">Verbinding (BLE)</span><span class="row-value gold">Niet verbonden ›</span></div>
+    <div class="row"><span class="row-label">Batterij module</span><span class="row-value">—</span></div>
+    <div class="row"><span class="row-label">Firmware-versie</span><span class="row-value">v0.4 ›</span></div>
+    <div class="row"><span class="row-label">IMU herkalibreren</span><span class="row-value">›</span></div>
+    <div class="row"><span class="row-label">Microfoon gevoeligheid</span><span class="row-value cyan">Normaal</span></div>
+  </div>
+
+  <div class="section-label">DETECTIE</div>
+  <div class="group">
+    <div class="slider-row">
+      <div class="slider-top"><span class="row-label">Gevoeligheid impact</span><span class="row-value cyan">Normaal</span></div>
+      <div class="slider-track"><div class="slider-fill"></div><div class="slider-knob"></div></div>
+    </div>
+    <div class="row"><span class="row-label">Terreinfilter (putten/hobbels)</span><div class="toggle off"><div class="toggle-knob"></div></div></div>
+    <div class="row"><span class="row-label">Gyro-gating (mech. defect)</span><div class="toggle on"><div class="toggle-knob"></div></div></div>
+    <div class="row"><span class="row-label">Bronnen combineren (telefoon+stick)</span><div class="toggle on"><div class="toggle-knob"></div></div></div>
+  </div>
+
+  <div class="section-label">BEWEGINGSALARM</div>
+  <div class="group">
+    <div class="row"><span class="row-label">Alarm bij optillen/verplaatsen</span><div class="toggle on"><div class="toggle-knob"></div></div></div>
+    <div class="row"><span class="row-label">Pushmelding</span><div class="toggle on"><div class="toggle-knob"></div></div></div>
+    <div class="row"><span class="row-label">Zoemer/claxon</span><div class="toggle off"><div class="toggle-knob"></div></div></div>
+  </div>
+
+  <div class="section-label">ALGEMEEN</div>
+  <div class="group">
+    <div class="row"><span class="row-label">Eenheden</span><span class="row-value">km/u ›</span></div>
+    <div class="row"><span class="row-label">Meldingen</span><div class="toggle on"><div class="toggle-knob"></div></div></div>
+    <div class="row"><span class="row-label">Achtergrond blijven loggen</span><div class="toggle on"><div class="toggle-knob"></div></div></div>
+    <div class="row"><span class="row-label">Data exporteren</span><span class="row-value">›</span></div>
+  </div>
+
+  <div class="footer">SHOKWAVE · TIMS · v1.0</div>
+
+</div>
+
+</body>
+</html>
