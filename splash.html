@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shokwave — Splash</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050505;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  @keyframes hbeat {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.35); }
+    20% { transform: scale(1); }
+    30% { transform: scale(1.2); }
+    40% { transform: scale(1); }
+    100% { transform: scale(1); }
+  }
+  @keyframes hbeatRing {
+    0% { transform: scale(1); opacity: 0.6; }
+    10% { transform: scale(1.2); opacity: 0.3; }
+    20% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 0.6; }
+  }
+  @keyframes shokRayOut {
+    0% { stroke-dashoffset: 0; opacity: 0; }
+    8% { opacity: 1; }
+    30% { stroke-dashoffset: -46; opacity: 0; }
+    100% { stroke-dashoffset: -46; opacity: 0; }
+  }
+  .hb-dot { animation: hbeat 1.3s ease-in-out infinite; transform-origin: 50px 50px; }
+  .hb-ring { animation: hbeatRing 1.3s ease-in-out infinite; transform-origin: 50px 50px; }
+  .shok-ray { stroke-dasharray: 46; animation: shokRayOut 1.3s ease-out infinite; }
+
+  .screen {
+    background: #08090a;
+    border: 1px solid #222;
+    width: 360px;
+    height: 640px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .noise {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  .corner-tl { position: absolute; top: 16px; left: 16px; width: 14px; height: 14px; border-top: 3px solid #ff3b1f; border-left: 3px solid #ff3b1f; }
+  .corner-br { position: absolute; bottom: 16px; right: 16px; width: 14px; height: 14px; border-bottom: 3px solid #ff3b1f; border-right: 3px solid #ff3b1f; }
+
+  .content { position: relative; text-align: center; }
+
+  .logo-sub { margin-top: 14px; color: #6b7a7c; font-size: 13px; letter-spacing: 6px; font-weight: 500; }
+  .logo-title { margin-top: 4px; font-size: 32px; letter-spacing: 2px; font-weight: 500; }
+  .logo-title .shok { color: #e8e8e6; }
+  .logo-title .wave { color: #00e5d1; text-shadow: 0 0 12px rgba(0,229,209,0.4); }
+
+  .loadbar {
+    margin-top: 24px;
+    width: 160px;
+    height: 2px;
+    background: #1a2a2a;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .loadbar-fill { position: absolute; left: 0; top: 0; height: 100%; width: 62%; background: #00e5d1; }
+  .loadtext { margin-top: 10px; color: #4a5a5c; font-size: 10px; letter-spacing: 3px; }
+</style>
+</head>
+<body>
+
+<div class="screen">
+  <div class="noise"></div>
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+
+  <div class="content">
+    <svg width="150" height="150" viewBox="0 0 100 100" style="filter:drop-shadow(0 0 10px rgba(0,229,209,0.35));">
+      <polygon points="50,4 90,27 90,73 50,96 10,73 10,27" fill="none" stroke="#00e5d1" stroke-width="4"/>
+      <polygon class="hb-ring" points="50,20 76,35 76,65 50,80 24,65 24,35" fill="none" stroke="#00e5d1" stroke-width="2"/>
+      <line class="shok-ray" x1="50" y1="50" x2="50" y2="4" stroke="#00e5d1" stroke-width="1.5"/>
+      <line class="shok-ray" x1="50" y1="50" x2="90" y2="27" stroke="#00e5d1" stroke-width="1.5"/>
+      <line class="shok-ray" x1="50" y1="50" x2="90" y2="73" stroke="#00e5d1" stroke-width="1.5"/>
+      <line class="shok-ray" x1="50" y1="50" x2="50" y2="96" stroke="#00e5d1" stroke-width="1.5"/>
+      <line class="shok-ray" x1="50" y1="50" x2="10" y2="73" stroke="#00e5d1" stroke-width="1.5"/>
+      <line class="shok-ray" x1="50" y1="50" x2="10" y2="27" stroke="#00e5d1" stroke-width="1.5"/>
+      <circle class="hb-dot" cx="50" cy="50" r="6" fill="#00e5d1"/>
+    </svg>
+
+    <div class="logo-sub">TIMS</div>
+    <div class="logo-title"><span class="shok">SHOK</span><span class="wave">WAVE</span></div>
+
+    <div class="loadbar"><div class="loadbar-fill"></div></div>
+    <div class="loadtext">SYSTEEM WORDT GELADEN</div>
+  </div>
+</div>
+
+</body>
+</html>
