@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHOKWAVE — Demo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050505;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    color: #e8e8e6;
+  }
+  .wrap {
+    max-width: 420px;
+    width: 100%;
+  }
+  .logo {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .logo-sub {
+    color: #6b7a7c;
+    font-size: 12px;
+    letter-spacing: 6px;
+    margin-bottom: 6px;
+  }
+  .logo-title {
+    font-size: 28px;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+  .logo-title .shok { color: #e8e8e6; }
+  .logo-title .wave { color: #00e5d1; text-shadow: 0 0 12px rgba(0,229,209,0.4); }
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  a {
+    display: block;
+    background: #0f0f0f;
+    border: 1px solid #2a2a2a;
+    border-left: 3px solid #00e5d1;
+    padding: 16px 18px;
+    color: #e8e8e6;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  a:hover {
+    background: #141818;
+    border-color: #00e5d1;
+  }
+  a span {
+    display: block;
+    color: #5a6a6a;
+    font-size: 11px;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 28px;
+    color: #3a3a3a;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="logo">
+      <div class="logo-sub">TIMS</div>
+      <div class="logo-title"><span class="shok">SHOK</span><span class="wave">WAVE</span></div>
+    </div>
+    <div class="links">
+      <a href="splash.html">Splash <span>Opstartscherm met logo &amp; loading</span></a>
+      <a href="dashboard.html">Dashboard <span>Overzicht · board · stats · module</span></a>
+      <a href="rijscherm.html">Rijscherm <span>Speed gauge · gyro · impacts · stop</span></a>
+      <a href="historiek.html">Historiek <span>Totalen + recente ritten</span></a>
+      <a href="instellingen.html">Instellingen <span>Board · sensor · detectie · alarm</span></a>
+    </div>
+    <div class="footer">SHOKWAVE · DEMO · v1.0</div>
+  </div>
+</body>
+</html>
