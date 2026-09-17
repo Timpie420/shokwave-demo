@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shokwave — Historiek</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050505;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  .screen { background:#0b0c0c; border-radius:6px; padding:16px; width:360px; border:1px solid #2a241a; }
+
+  .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .brand-title { color:#e8e8e6; font-size:15px; letter-spacing:2px; font-weight:500; }
+
+  .summary { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:8px; margin-bottom:18px; }
+  .summary-card { text-align:center; padding:12px 4px; background:#0f0f0f; border:1px solid #2a2a2a; }
+  .summary-card.cyan { border-top:2px solid #00e5d1; }
+  .summary-card.gold { border-top:2px solid #ffb020; }
+  .summary-card.red { border-top:2px solid #ff3b1f; }
+  .summary-value { color:#e8e8e6; font-size:18px; font-weight:600; }
+  .summary-value.red { color:#ff5a3f; }
+  .summary-label { color:#5a6a6a; font-size:8.5px; letter-spacing:1px; margin-top:2px; }
+
+  .section-label { color:#5a6a6a; font-size:10px; letter-spacing:2px; margin-bottom:10px; }
+
+  .rides { display:flex; flex-direction:column; gap:8px; }
+  .ride-row { display:flex; justify-content:space-between; align-items:center; background:#0f0f0f; border:1px solid #2a2a2a; padding:12px 14px; }
+  .ride-row.cyan { border-left:3px solid #00e5d1; }
+  .ride-row.red { border-left:3px solid #ff3b1f; }
+  .ride-row.gold { border-left:3px solid #ffb020; }
+  .ride-date { color:#e8e8e6; font-size:13px; font-weight:500; }
+  .ride-meta { color:#5a6a6a; font-size:10px; margin-top:3px; }
+  .ride-impacts { text-align:right; font-size:12px; }
+  .ride-impacts.cyan { color:#00e5d1; }
+  .ride-impacts.red { color:#ff5a3f; }
+  .ride-impacts.gold { color:#ffb020; }
+  .ride-arrow { color:#3a3a3a; font-size:9px; margin-top:2px; }
+</style>
+</head>
+<body>
+
+<div class="screen">
+
+  <div class="header">
+    <div class="brand">
+      <svg width="28" height="28" viewBox="0 0 100 100">
+        <polygon points="50,4 90,27 90,73 50,96 10,73 10,27" fill="none" stroke="#00e5d1" stroke-width="4"/>
+        <circle cx="50" cy="50" r="6" fill="#00e5d1"/>
+      </svg>
+      <span class="brand-title">HISTORIEK</span>
+    </div>
+  </div>
+
+  <div class="summary">
+    <div class="summary-card cyan"><div class="summary-value">142</div><div class="summary-label">KM TOTAAL</div></div>
+    <div class="summary-card gold"><div class="summary-value">23</div><div class="summary-label">RITTEN</div></div>
+    <div class="summary-card red"><div class="summary-value red">3</div><div class="summary-label">IMPACTS</div></div>
+  </div>
+
+  <div class="section-label">RECENTE RITTEN</div>
+
+  <div class="rides">
+    <div class="ride-row cyan">
+      <div><div class="ride-date">Vandaag, 15:25</div><div class="ride-meta">7.4 km · 28 km/u max</div></div>
+      <div class="ride-impacts cyan">0 impacts<div class="ride-arrow">→</div></div>
+    </div>
+    <div class="ride-row red">
+      <div><div class="ride-date">Gisteren, 18:02</div><div class="ride-meta">12.1 km · 31 km/u max</div></div>
+      <div class="ride-impacts red">2 impacts<div class="ride-arrow">→</div></div>
+    </div>
+    <div class="ride-row cyan">
+      <div><div class="ride-date">11 sep, 09:40</div><div class="ride-meta">5.8 km · 24 km/u max</div></div>
+      <div class="ride-impacts cyan">0 impacts<div class="ride-arrow">→</div></div>
+    </div>
+    <div class="ride-row gold">
+      <div><div class="ride-date">9 sep, 17:15</div><div class="ride-meta">9.3 km · 29 km/u max</div></div>
+      <div class="ride-impacts gold">1 impact<div class="ride-arrow">→</div></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
