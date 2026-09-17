@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shokwave — Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #050505;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
+  @keyframes flicker { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .dot-flick { animation: flicker 1.8s ease-in-out infinite; }
+
+  .screen {
+    background: #0b0c0c;
+    border-radius: 6px;
+    padding: 16px;
+    width: 360px;
+    border: 1px solid #2a241a;
+  }
+
+  .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .brand-sub { color:#6b7a7c; font-size:9px; letter-spacing:3px; }
+  .brand-title { font-size:16px; letter-spacing:1px; font-weight:500; }
+  .brand-title .shok { color:#e8e8e6; }
+  .brand-title .wave { color:#00e5d1; }
+  .help-btn { color:#c9a86a; font-size:9px; letter-spacing:1px; border:1px solid #3a3222; padding:4px 8px; border-radius:2px; }
+
+  .rider-row {
+    display:flex; justify-content:space-between; align-items:center;
+    background:#0f0f0f; border:1px solid #2a2a2a; padding:10px 12px; margin-bottom:16px;
+    clip-path: polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  }
+  .rider-label { color:#6b7a7c; font-size:10px; }
+  .rider-name { color:#e8e8e6; font-size:12px; margin-left:6px; }
+  .battery { display:flex; align-items:center; gap:5px; }
+  .battery-swatch { width:7px; height:7px; background:#ffb020; border-radius:1px; }
+  .battery-pct { color:#ffb020; font-size:12px; font-weight:500; }
+
+  .board-card {
+    background: linear-gradient(180deg,#101414,#0a0d0d);
+    border:1px solid #00e5d1; border-left:3px solid #00e5d1;
+    padding:12px 14px; margin-bottom:16px;
+    clip-path: polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);
+  }
+  .board-name { color:#e8e8e6; font-size:14px; font-weight:500; }
+  .board-label { color:#5a6a6a; font-size:10px; letter-spacing:1px; margin-top:2px; }
+
+  .tabs { display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:8px; margin-bottom:20px; }
+  .tab { text-align:center; padding:10px 0; background:#0f0f0f; border:1px solid #2a2a2a; color:#6b7a7c; font-size:11px; letter-spacing:1px; position:relative; cursor:pointer; }
+  .tab.active { border:1px solid #00e5d1; border-bottom:2px solid #00e5d1; color:#00e5d1; font-weight:500; clip-path: polygon(6px 0,100% 0,100% 100%,0 100%,0 6px); }
+  .tab-badge { position:absolute; top:-6px; right:6px; background:#ffb020; color:#0b0c0c; font-size:9px; font-weight:600; width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+  .status-banner {
+    background: linear-gradient(180deg,#12201d,#0d0f0f);
+    border:1px solid #00e5d1; padding:16px; text-align:center; margin-bottom:14px;
+    clip-path: polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);
+    box-shadow: 0 0 20px rgba(0,229,209,0.08);
+    color:#00e5d1; font-size:16px; font-weight:500; letter-spacing:1px;
+  }
+
+  .module-card { position:relative; background:#0f0f0f; border:1px solid #2a2a2a; border-left:3px solid #ffb020; padding:14px; margin-bottom:12px; }
+  .module-top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .module-title { color:#e8e8e6; font-size:13px; font-weight:500; }
+  .module-desc { color:#6b7a7c; font-size:11px; margin-top:4px; line-height:1.4; }
+  .module-status { color:#ffb020; font-size:9px; letter-spacing:1px; border:1px solid #4a3a1a; padding:2px 6px; }
+  .module-actions { display:flex; gap:8px; margin-top:12px; }
+  .btn-connect { flex:1; background:transparent; border:1px solid #00e5d1; color:#00e5d1; padding:9px; font-size:11px; letter-spacing:1px; font-weight:500; cursor:pointer; }
+  .btn-disconnect { flex:1; background:transparent; border:1px solid #3a3a3a; color:#5a6a6a; padding:9px; font-size:11px; letter-spacing:1px; cursor:pointer; }
+
+  .stats-grid { display:grid; grid-template-columns: 1fr 1fr; gap:8px; }
+  .stat-card { background:#0f0f0f; border:1px solid #2a2a2a; padding:10px 12px; }
+  .stat-card.cyan { border-left:2px solid #00e5d1; }
+  .stat-card.gold { border-left:2px solid #ffb020; }
+  .stat-label { color:#5a6a6a; font-size:9px; letter-spacing:1px; }
+  .stat-label .muted { color:#3a3a3a; }
+  .stat-value { color:#e8e8e6; font-size:16px; margin-top:4px; }
+  .stat-unit { font-size:10px; color:#5a6a6a; }
+</style>
+</head>
+<body>
+
+<div class="screen">
+
+  <div class="header">
+    <div class="brand">
+      <svg width="32" height="32" viewBox="0 0 100 100">
+        <polygon points="50,4 90,27 90,73 50,96 10,73 10,27" fill="none" stroke="#00e5d1" stroke-width="4"/>
+        <polygon points="50,20 76,35 76,65 50,80 24,65 24,35" fill="none" stroke="#00e5d1" stroke-width="2" opacity="0.6"/>
+        <circle cx="50" cy="50" r="6" fill="#00e5d1"/>
+      </svg>
+      <div>
+        <div class="brand-sub">TIMS</div>
+        <div class="brand-title"><span class="shok">SHOK</span><span class="wave">WAVE</span></div>
+      </div>
+    </div>
+    <span class="help-btn">HELP</span>
+  </div>
+
+  <div class="rider-row">
+    <div><span class="rider-label">RIJDER:</span><span class="rider-name">Timpie</span></div>
+    <div class="battery"><div class="battery-swatch"></div><span class="battery-pct">12%</span></div>
+  </div>
+
+  <div class="board-card">
+    <div class="board-name">beast</div>
+    <div class="board-label">ACTIEF BOARD</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active">RIJDEN</div>
+    <div class="tab">HISTORIEK</div>
+    <div class="tab">BOARD<div class="tab-badge">1</div></div>
+    <div class="tab">SETUP</div>
+  </div>
+
+  <div class="status-banner">Klaar om te starten</div>
+
+  <div class="module-card">
+    <div class="module-top">
+      <div>
+        <div class="module-title">Board-module</div>
+        <div class="module-desc">Niet verbonden — trilling komt van de telefoon (nood)</div>
+      </div>
+      <span class="module-status dot-flick">UIT</span>
+    </div>
+    <div class="module-actions">
+      <button class="btn-connect">VERBINDEN</button>
+      <button class="btn-disconnect">LOS</button>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card cyan">
+      <div class="stat-label">GELUID</div>
+      <div class="stat-value">—</div>
+    </div>
+    <div class="stat-card gold">
+      <div class="stat-label">TRILLING <span class="muted">telefoon</span></div>
+      <div class="stat-value">—</div>
+    </div>
+    <div class="stat-card cyan">
+      <div class="stat-label">GYRO</div>
+      <div class="stat-value">—</div>
+    </div>
+    <div class="stat-card cyan">
+      <div class="stat-label">SNELHEID</div>
+      <div class="stat-value">— <span class="stat-unit">km/u</span></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
